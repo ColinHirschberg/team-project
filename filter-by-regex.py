@@ -22,9 +22,20 @@ with open('pro-who-tweets.csv') as file:
 # -- Preprocessing: -- We don't care about the other data in our .csv. We want to only get the tweet text data in 'content' column.
 # -- Suggested approach: -- create a list variable and save the 'content' column of the pro-who-tweets.csv file as your list. Print the length of the list. See here for more: https://www.geeksforgeeks.org/python-read-csv-columns-into-list/
 
+import csv
+filename = open('pro-who-tweets.csv','r') #opens the file in read mode. 
+file = csv.DictReader(filename)
 
+date_list = []
+content_list = []
 
+#col is a dummy variable that iterates through the columns of a file analagously to how item iterates through the items, elements, terms, or members of a list in s for loop.
 
+for col in file:
+  date_list.append(col['date'])
+  content_list.append(col['content'])
+
+print(length(content_list))
 
 # === Part 1: Filtering ===
 
