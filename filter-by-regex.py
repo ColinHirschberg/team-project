@@ -9,7 +9,7 @@
 # !!! You may need to run in your Shell: pip install pandas !!!
 # This line is written by Max AND SEBASTIAN
 # This is a merge conflict that is resolved
-# This will create a merge conflict when fetch upstream
+# Let's make another merge conflict when fetch upstream
 import os
 import pandas
 import re
