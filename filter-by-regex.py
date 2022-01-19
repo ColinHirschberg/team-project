@@ -33,7 +33,9 @@ with open('pro-who-tweets.csv') as file:
 # -- First filter: -- Remove duplicates. 
 # -- Suggested approach: -- using your list, convert the list into a dictionary, which will automatically remove duplicates. Then convert your dictionary back into a list. Print the length of the list. https://www.w3schools.com/python/python_howto_remove_duplicates.asp
 
-# A dictionary is an assemblage of key-value pairs.
+
+
+
 
 
 
