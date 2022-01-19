@@ -10,6 +10,7 @@
 # This line is written by Max AND SEBASTIAN
 # This is a merge conflict that is resolved
 # Let's make another merge conflict when fetch upstream
+# This is another merge conflict when fetch upstream
 import os
 import pandas
 import re
