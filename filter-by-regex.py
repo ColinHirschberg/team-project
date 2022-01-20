@@ -94,6 +94,14 @@ print(len(allTweetsContent))
 # -- Suggested approach: -- Write a regular expression that picks out this pattern. Using the list you generated from the previous filter, use create a loop with a conditional statement that removes this pattern. Print the length of the list.
 
 
+forth_filtered = []
+for t in tweets:
+    if re.search(r'\sit(\s+\S+){1,3}\swho\s', t) != None:
+         continue
+    else:
+        forth_filtered += [t]
+#print(forth_filtered)
+print(len(forth_filtered))
 
 
 
@@ -101,7 +109,27 @@ print(len(allTweetsContent))
 # -- Suggested approach: --  Save the verbs above into a list. Create a loop that iterates through your pronoun list from above, and removes examples that contain the pattern '[element-from-verb-list] [element-from-PRO-list]'. Print the length of the list.
 
 
+verbs = ['ask', 'tell', 'wonder', 'inform', 'show']
+pronoun_list = ['me', 'you', 'him', 'her', 'it'] #仮に
+fifth_filtered = []
 
+for t in forth_filtered:
+    if re.search(r'\s(ask|tell|wonder|inform|show)\s(me|you|him|her|it|us|them)\swho\s' , t) != None:
+        continue
+    else:
+        fifth_filtered += [t]
+
+#filter1(fifth_filtered) ←Colin's function (used in filter1) 
+#↓ this is temmporary code. when Colin made the filter1 code, it will replace the codes below.
+dict2 = {}
+count = 0
+for k in fifth_filtered:
+    dict2[k] = dict2.get(k, 0) + 1
+
+fifth_filtered = list(dict2.keys())
+
+#print(fifth_filtered)
+print(len(fifth_filtered))
 
 
 # === Part 2: Uniqueness ===
