@@ -14,6 +14,7 @@ import csv
 
 allTweets = []
 fields = []
+allTweetsContent = []
 with open('pro-who-tweets.csv', 'r') as file:
   # Parse each lines of tweets
   csvReader = csv.reader(file)
@@ -28,7 +29,12 @@ with open('pro-who-tweets.csv', 'r') as file:
 # -- Preprocessing: -- We don't care about the other data in our .csv. We want to only get the tweet text data in 'content' column.
 # -- Suggested approach: -- create a list variable and save the 'content' column of the pro-who-tweets.csv file as your list. Print the length of the list. See here for more: https://www.geeksforgeeks.org/python-read-csv-columns-into-list/
 
-
+# Find the content field from all of the fields
+content_field = fields.index("content")
+# Add all tweets to a list of tweets called allTweetsContent
+for row in allTweets:
+  allTweetsContent.append(row[content_field])
+print(f"Length of allTweetsContent: {len(allTweetsContent)}")
 
 # === Part 1: Filtering ===
 
