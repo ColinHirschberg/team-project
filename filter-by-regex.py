@@ -42,7 +42,7 @@ print(length(content_list))
 # -- First filter: -- Remove duplicates. 
 # -- Suggested approach: -- using your list, convert the list into a dictionary, which will automatically remove duplicates. Then convert your dictionary back into a list. Print the length of the list. https://www.w3schools.com/python/python_howto_remove_duplicates.asp
 
-Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list} # ----- key:value
+#Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list} # ----- key:value
 #
 #allTweets_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
 #allTweets = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
@@ -71,7 +71,7 @@ print(len(allTweets))
 # -- Third filter: -- Remove the pattern 'of PRO who'
 # -- Suggested approach: -- Create another loop, and another conditional statement using a regular expression from the list you got from the previous filter. This time, save only those that DO NOT match the conditional statement. Print the length of the list.
 
-
+#A dictionary is an assemblage of key-value pairs.
 
 
 
