@@ -35,7 +35,7 @@ content_field = fields.index("content")
 # Add all tweets to a list of tweets called allTweetsContent
 for row in allTweets:
   allTweetsContent.append(row[content_field])
-print(f"Length of allTweetsContent: {len(allTweetsContent)}")
+print(f"Length of the list with all of the tweets: {len(allTweetsContent)}")
 
 # === Part 1: Filtering ===
 
