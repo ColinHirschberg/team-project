@@ -22,20 +22,7 @@ with open('pro-who-tweets.csv') as file:
 # -- Preprocessing: -- We don't care about the other data in our .csv. We want to only get the tweet text data in 'content' column.
 # -- Suggested approach: -- create a list variable and save the 'content' column of the pro-who-tweets.csv file as your list. Print the length of the list. See here for more: https://www.geeksforgeeks.org/python-read-csv-columns-into-list/
 
-import csv
-filename = open('pro-who-tweets.csv','r') #opens the file in read mode. 
-file = csv.DictReader(filename)
 
-date_list = []
-allTweets = [] #content list
-
-#col is a dummy variable that iterates through the columns of a file analagously to how item iterates through the items, elements, terms, or members of a list in s for loop.
-
-for col in file:
-  date_list.append(col['date'])
-  allTweets.append(col['content'])
-
-print(length(content_list))
 
 # === Part 1: Filtering ===
 
@@ -44,30 +31,41 @@ print(length(content_list))
 
 #A dictionary is an assemblage of key-value pairs.
 
-Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list} # ----- key:value
-#
-#allTweets_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
-#allTweets = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
-#print(len(allTweets))
+#Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list}  ----- key:value
+
+#allTweetsContent_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
+#allTweetsContent = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
+
+print(len(allTweetsContent))
+
+allTweetsContent_dict = {allTweetsContent.index(s)+1: s for s in allTweetsContent}
+
+allTweetsContent = []
+
+allTweetsContent = list(allTweetsContent_dict.values())
+
+print(len(allTweetsContent))
+
 
 
 # -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma. See Lecture 3 slides for more explanation of this!
 # -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. Create a loop to run through each entry in your list. Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
 
-pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them"]
+pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them", "those"]
 
 #Seek out a PRO who sequence in which the last whitespace character is anything other than a letter or a comma, and apply remove() list method
 
 for i in range(len(pronouns)):
-  for j in range(len(allTweets)):
+  for j in range(len(allTweetsContent)):
+    #The jth item of the list allTweetsContent is the reference string on which we perform the matching operation.
     pronoun = pronouns[i]
-    m = re.search(pronoun+r'\s*[^abcdefghijklmnopqrstuvwxyz,]\s+(W|w)ho',allTweets[j])
+    m = re.search(pronoun+r'\s*[^abcdefghijklmnopqrstuvwxyz,]\s+(W|w)ho',allTweetsContent[j])
     if type(m) == re.Match:
-      allTweets.remove(allTweets[j])
+      allTweetsContent.remove(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
     else:
       continue
       
-print(len(allTweets))
+print(len(allTweetsContent))
 
 
 # -- Third filter: -- Remove the pattern 'of PRO who'
@@ -86,12 +84,6 @@ print(len(allTweets))
 
 # -- Fifth filter: -- Remove tweets where 'PRO who' is preceded by the verbs 'ask', 'tell', 'wonder', 'inform', and 'show'.
 # -- Suggested approach: --  Save the verbs above into a list. Create a loop that iterates through your pronoun list from above, and removes examples that contain the pattern '[element-from-verb-list] [element-from-PRO-list]'. Print the length of the list.
-
-
-
-
-# output your list as a .csv or .tsv file.
-
 
 
 
