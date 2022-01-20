@@ -10,19 +10,31 @@
 import os
 import pandas
 import re
+import csv
 
 allTweets = []
-with open('pro-who-tweets.csv') as file:
-  allTweets = file.read()
-  print(allTweets)
+fields = []
+allTweetsContent = []
+with open('pro-who-tweets.csv', 'r') as file:
+  # Parse each lines of tweets
+  csvReader = csv.reader(file)
+  # Read in a list of fields
+  fields = next(csvReader)
+  # Add each row of the csv file to allTweets 
+  for row in csvReader:
+    allTweets.append(row)
+
 
 
 # -- Preprocessing: -- We don't care about the other data in our .csv. We want to only get the tweet text data in 'content' column.
 # -- Suggested approach: -- create a list variable and save the 'content' column of the pro-who-tweets.csv file as your list. Print the length of the list. See here for more: https://www.geeksforgeeks.org/python-read-csv-columns-into-list/
 
-
-
-
+# Find the content field from all of the fields
+content_field = fields.index("content")
+# Add all tweets to a list of tweets called allTweetsContent
+for row in allTweets:
+  allTweetsContent.append(row[content_field])
+print(f"Length of allTweetsContent: {len(allTweetsContent)}")
 
 # === Part 1: Filtering ===
 
