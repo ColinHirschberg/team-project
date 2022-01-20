@@ -1,11 +1,10 @@
 # CTK Replication
 
-This folder currently contains 4 files:
-
- 1. this **README** file
- 2. **scrapeTweets.py**, a script that was used to scrape data from Twitter of the pattern _PRONOUN who_ from tweets posted on 22 September, 2021. 
- 3. **pro-who-tweets.csv**, a file containing the tweets that were scraped, gathered on 08 January 2022.
- 4. **filter-by-regex.py**, a .py file containing descriptions of the patterns that students should use to filter out irrelevant examples from **pro-who-tweets.csv**
+### Files
+- README.md: The file that describe the project, the list of files, as well as the list of contributors
+- **scrapeTweets.py**: A script that was used to scrape data from Twitter of the pattern _PRONOUN who_ from tweets posted on 22 September, 2021. 
+- **pro-who-tweets.csv**: A file containing the tweets that were scraped, gathered on 08 January 2022.
+- **filter-by-regex.py**: A .py file containing descriptions of the patterns that students should use to filter out irrelevant examples from **pro-who-tweets.csv**
 
 ### Overview of data in _pro-who-tweets.csv_
 
@@ -30,3 +29,9 @@ Each line in this file is a comma-separated list (csv) of the following informat
   - **content**: The unedited text of the tweet
   - **id**: the tweet ID 
   - **url**: the address where this tweet can be publically viewed
+
+### Contributors
+- Max Xie
+- Yuma Yamada
+- Sebastian Bissiri
+- Colin Hirschberg
