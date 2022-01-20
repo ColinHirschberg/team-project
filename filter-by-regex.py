@@ -99,13 +99,13 @@ print(f"Length of the list of tweets after second filter: {len(allTweetsContent)
 
 
 forth_filtered = []
-for t in tweets:
+for t in allTweetsContent:
     if re.search(r'\sit(\s+\S+){1,3}\swho\s', t) != None:
          continue
     else:
         forth_filtered += [t]
 #print(forth_filtered)
-print(len(forth_filtered))
+print(f"Length of the list of tweets after fourth filter: {len(forth_filtered)}")
 
 
 
@@ -133,7 +133,7 @@ for k in fifth_filtered:
 fifth_filtered = list(dict2.keys())
 
 #print(fifth_filtered)
-print(len(fifth_filtered))
+print(f"Length of the list of tweets after fifth filter: {len(fifth_filtered)}")
 
 # output your list as a .csv or .tsv file.
 
