@@ -131,6 +131,9 @@ fifth_filtered = list(dict2.keys())
 #print(fifth_filtered)
 print(len(fifth_filtered))
 
+# output your list as a .csv or .tsv file.
+
+
 
 # === Part 2: Uniqueness ===
 
