@@ -42,7 +42,9 @@ print(length(content_list))
 # -- First filter: -- Remove duplicates. 
 # -- Suggested approach: -- using your list, convert the list into a dictionary, which will automatically remove duplicates. Then convert your dictionary back into a list. Print the length of the list. https://www.w3schools.com/python/python_howto_remove_duplicates.asp
 
-#Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list} # ----- key:value
+#A dictionary is an assemblage of key-value pairs.
+
+Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list} # ----- key:value
 #
 #allTweets_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
 #allTweets = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
