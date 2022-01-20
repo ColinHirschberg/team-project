@@ -7,10 +7,6 @@
 # NOTE: the suggested approaches below are NOT the only way to complete this task! It is merely given as a starting point. You can choose to do this in a different way if you want, but be sure to comment on your process along the way.
 
 # !!! You may need to run in your Shell: pip install pandas !!!
-# This line is written by Max AND SEBASTIAN
-# This is a merge conflict that is resolved
-# Let's make another merge conflict when fetch upstream
-# This is another merge conflict when fetch upstream
 import os
 import pandas
 import re
@@ -81,12 +77,13 @@ with open('pro-who-tweets.csv') as file:
 tweetList = ['this is a quote: he who shall not be named', 'who among us really', 'jeff is wondering who sings', 'he who shall not be named again', 'but who among us is perfect']
 
 # This evaluates each tweet in TweetList for whether it contains the specified regex search, and whether that regex pattern in a tweet matches exactly to any other tweet in the list. If it does, it is assigned a value True. If it doesn't, it's assigned a value False.
+trueFalseList = []
 for tweet in tweetList:
   whoPhrase = re.search("who \w+ \w+", tweet)
-  try:
-    trueFalseList = [whoPhrase.group() in tweet for tweet in tweetList]
-  except AttributeError:
-    trueFalseList = False
+  if whoPhrase is None:
+      trueFalseList.append(False)
+  else:
+      trueFalseList.append(any(whoPhrase.group(0) in t for t in tweetList))
 print(trueFalseList)
 
 # The following takes our two lists, tweetList and trueFalseList, and zips them together. It then creates a dataframe out of this list, that can then be converted to a .csv file
