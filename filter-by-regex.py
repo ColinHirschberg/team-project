@@ -86,7 +86,7 @@ print(len(allTweetsContent))
 # -- Third filter: -- Remove the pattern 'of PRO who'
 # -- Suggested approach: -- Create another loop, and another conditional statement using a regular expression from the list you got from the previous filter. This time, save only those that DO NOT match the conditional statement. Print the length of the list.
 
-
+#I'll work on this! - seb
 
 
 
