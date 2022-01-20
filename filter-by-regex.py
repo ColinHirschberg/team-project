@@ -1,29 +1,41 @@
 # Initiated by Kelsey Kraus
 #
-# Contributors: <UPDATE ME!> 
+# Contributors: Yuma Yamada, Sebastian Bissiri, Colin Hirschberg, Max Xie
 #
-# Description: <UPDATE ME!> This file currently contains the instructions for replicating the data cleaning method implemented by CTK 2016.
+# Description: This file contains the source code for replicating the data cleaning method implemented by CTK 2016.
 
 # NOTE: the suggested approaches below are NOT the only way to complete this task! It is merely given as a starting point. You can choose to do this in a different way if you want, but be sure to comment on your process along the way.
 
 # !!! You may need to run in your Shell: pip install pandas !!!
-# This line is written by Max AND SEBASTIAN
 import os
 import pandas
 import re
+import csv
 
 allTweets = []
-with open('pro-who-tweets.csv') as file:
-  allTweets = file.read()
-  print(allTweets)
+fields = []
+allTweetsContent = []
+with open('pro-who-tweets.csv', 'r') as file:
+  # Parse each lines of tweets
+  csvReader = csv.reader(file)
+  # Read in a list of fields
+  fields = next(csvReader)
+  # Add each row of the csv file to allTweets 
+  for row in csvReader:
+    allTweets.append(row)
+
 
 
 # -- Preprocessing: -- We don't care about the other data in our .csv. We want to only get the tweet text data in 'content' column.
 # -- Suggested approach: -- create a list variable and save the 'content' column of the pro-who-tweets.csv file as your list. Print the length of the list. See here for more: https://www.geeksforgeeks.org/python-read-csv-columns-into-list/
 
 
-
-
+# Find the content field from all of the fields
+content_field = fields.index("content")
+# Add all tweets to a list of tweets called allTweetsContent
+for row in allTweets:
+  allTweetsContent.append(row[content_field])
+print(f"Length of allTweetsContent: {len(allTweetsContent)}")
 
 # === Part 1: Filtering ===
 
@@ -34,11 +46,41 @@ with open('pro-who-tweets.csv') as file:
 
 
 
+#Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list}  ----- key:value
+
+#allTweetsContent_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
+#allTweetsContent = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
+
+print(len(allTweetsContent))
+
+allTweetsContent_dict = {allTweetsContent.index(s)+1: s for s in allTweetsContent}
+
+allTweetsContent = []
+
+allTweetsContent = list(allTweetsContent_dict.values())
+
+print(len(allTweetsContent))
+
+
+
 # -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma. See Lecture 3 slides for more explanation of this!
 # -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. Create a loop to run through each entry in your list. Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
 
+pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them", "those"]
 
+#Seek out a PRO who sequence in which the last whitespace character is anything other than a letter or a comma, and apply remove() list method
 
+for i in range(len(pronouns)):
+  for j in range(len(allTweetsContent)):
+    #The jth item of the list allTweetsContent is the reference string on which we perform the matching operation.
+    pronoun = pronouns[i]
+    m = re.search(pronoun+r'\s*[^abcdefghijklmnopqrstuvwxyz,]\s+(W|w)ho',allTweetsContent[j])
+    if type(m) == re.Match:
+      allTweetsContent.remove(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
+    else:
+      continue
+      
+print(len(allTweetsContent))
 
 
 # -- Third filter: -- Remove the pattern 'of PRO who'
@@ -57,12 +99,6 @@ with open('pro-who-tweets.csv') as file:
 
 # -- Fifth filter: -- Remove tweets where 'PRO who' is preceded by the verbs 'ask', 'tell', 'wonder', 'inform', and 'show'.
 # -- Suggested approach: --  Save the verbs above into a list. Create a loop that iterates through your pronoun list from above, and removes examples that contain the pattern '[element-from-verb-list] [element-from-PRO-list]'. Print the length of the list.
-
-
-
-
-# output your list as a .csv or .tsv file.
-
 
 
 
