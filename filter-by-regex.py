@@ -27,13 +27,13 @@ filename = open('pro-who-tweets.csv','r') #opens the file in read mode.
 file = csv.DictReader(filename)
 
 date_list = []
-content_list = []
+allTweets = [] #content list
 
 #col is a dummy variable that iterates through the columns of a file analagously to how item iterates through the items, elements, terms, or members of a list in s for loop.
 
 for col in file:
   date_list.append(col['date'])
-  content_list.append(col['content'])
+  allTweets.append(col['content'])
 
 print(length(content_list))
 
@@ -42,15 +42,30 @@ print(length(content_list))
 # -- First filter: -- Remove duplicates. 
 # -- Suggested approach: -- using your list, convert the list into a dictionary, which will automatically remove duplicates. Then convert your dictionary back into a list. Print the length of the list. https://www.w3schools.com/python/python_howto_remove_duplicates.asp
 
-#A dictionary is an assemblage of key-value pairs
-
+Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list} # ----- key:value
+#
+#allTweets_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
+#allTweets = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
+#print(len(allTweets))
 
 
 # -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma. See Lecture 3 slides for more explanation of this!
 # -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. Create a loop to run through each entry in your list. Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
 
+pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them"]
 
+#Seek out a PRO who sequence in which the last whitespace character is anything other than a letter or a comma, and apply remove() list method
 
+for i in range(len(pronouns)):
+  for j in range(len(allTweets)):
+    pronoun = pronouns[i]
+    m = re.search(pronoun+r'\s*[^abcdefghijklmnopqrstuvwxyz,]\s+(W|w)ho',allTweets[j])
+    if type(m) == re.Match:
+      allTweets.remove(allTweets[j])
+    else:
+      continue
+      
+print(len(allTweets))
 
 
 # -- Third filter: -- Remove the pattern 'of PRO who'
