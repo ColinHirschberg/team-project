@@ -11,6 +11,7 @@ import os
 import pandas
 import re
 import csv
+import copy
 
 allTweets = []
 fields = []
@@ -50,16 +51,13 @@ print(f"Length of the list with all of the tweets: {len(allTweetsContent)}")
 
 #allTweetsContent_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
 #allTweetsContent = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
-
-print(len(allTweetsContent))
-
 allTweetsContent_dict = {allTweetsContent.index(s)+1: s for s in allTweetsContent}
 
 allTweetsContent = []
 
 allTweetsContent = list(allTweetsContent_dict.values())
 
-print(len(allTweetsContent))
+print(f"Length of the tweet list with duplicates removed: {len(allTweetsContent)}")
 
 
 
@@ -70,17 +68,23 @@ pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them", "those
 
 #Seek out a PRO who sequence in which the last whitespace character is anything other than a letter or a comma, and apply remove() list method
 
+# Create a copy of allTweetsContent so to not change its content yet
+allTweetsContentNew = copy.copy(allTweetsContent)
+
 for i in range(len(pronouns)):
   for j in range(len(allTweetsContent)):
     #The jth item of the list allTweetsContent is the reference string on which we perform the matching operation.
     pronoun = pronouns[i]
     m = re.search(pronoun+r'\s*[^abcdefghijklmnopqrstuvwxyz,]\s+(W|w)ho',allTweetsContent[j])
     if type(m) == re.Match:
-      allTweetsContent.remove(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
+      # Only modify allTweetsContentNew
+      allTweetsContentNew.remove(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
     else:
       continue
       
-print(len(allTweetsContent))
+# Replace allTweetsContent with allTweetsContentNew
+allTweetsContent = allTweetsContentNew
+print(f"Length of the list of tweets after second filter: {len(allTweetsContent)}")
 
 
 # -- Third filter: -- Remove the pattern 'of PRO who'
