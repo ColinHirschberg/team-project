@@ -90,7 +90,20 @@ print(f"Length of the list of tweets after second filter: {len(allTweetsContent)
 # -- Third filter: -- Remove the pattern 'of PRO who'
 # -- Suggested approach: -- Create another loop, and another conditional statement using a regular expression from the list you got from the previous filter. This time, save only those that DO NOT match the conditional statement. Print the length of the list.
 
-#I'll work on this! - seb
+NEWallTweetsContentNew = copy.copy(allTweetsContent)
+
+for i in pronouns:
+  for j in range(len(allTweetsContent)):
+    m = re.search(r'of\s' + i + r'\s+(W|w)ho',allTweetsContent[j])
+    if type(m) == re.Match:
+      print('NEW TWEET HERE:')
+      print(allTweetsContent[j])
+      print(f"length of: {len(allTweetsContent)}")
+      NEWallTweetsContentNew.remove(allTweetsContent[j])
+    else:
+      continue
+allTweetsContent = NEWallTweetsContentNew
+print(f"Length of the list of tweets after third filter: {len(allTweetsContent)}")
 
 
 
