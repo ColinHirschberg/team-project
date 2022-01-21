@@ -96,10 +96,10 @@ for i in pronouns:
   for j in range(len(allTweetsContent)):
     m = re.search(r'of\s' + i + r'\s+(W|w)ho',allTweetsContent[j])
     if type(m) == re.Match:
-      print('NEW TWEET HERE:')
-      print(allTweetsContent[j])
-      print(f"length of: {len(allTweetsContent)}")
-      NEWallTweetsContentNew.remove(allTweetsContent[j])
+      try:
+        NEWallTweetsContentNew.remove(allTweetsContent[j])
+      except ValueError:
+        pass
     else:
       continue
 allTweetsContent = NEWallTweetsContentNew
