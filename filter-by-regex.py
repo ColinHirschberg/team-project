@@ -70,15 +70,21 @@ pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them", "those
 
 #Seek out a PRO who sequence in which the last whitespace character is anything other than a letter or a comma, and apply remove() list method
 
-for i in range(len(pronouns)):
-  for j in range(len(allTweetsContent)):
-    #The jth item of the list allTweetsContent is the reference string on which we perform the matching operation.
-    pronoun = pronouns[i]
-    m = re.search(pronoun+r'\s*[^abcdefghijklmnopqrstuvwxyz,]\s+(W|w)ho',allTweetsContent[j])
-    if type(m) == re.Match:
-      allTweetsContent.remove(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
-    else:
-      continue
+allTweetsContentNew_1 = []
+
+for j in range(len(allTweetsContent)):
+  #reference string: allTweetsContent[j]
+  match = False
+  for k in range(len(pronouns)):
+    pronoun = pronouns[k] #I spent one hour on just getting the index k correct.
+    #Only if the match object is not an empty list after checking all pronouns, append the tweet to a list.
+    m = re.findall(rf'({pronoun}\s*[^a-z,]\s+who|{pronoun}\s*[^a-z,]\s+Who)',allTweetsContent[j])
+    if len(m)>0: #Scenario in which a match to the regex is detected
+      match = True
+    if k==8 and not match: #A match has been detected earlier or now. (Note: both if statements can apply in such case that a match is sensed at k=8)
+      allTweetsContentNew_1.append(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
+   
+allTweetsContent = allTweetsContentNew_1
       
 print(len(allTweetsContent))
 
