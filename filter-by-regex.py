@@ -45,7 +45,8 @@ print(f"Length of the list with all of the tweets: {len(allTweetsContent)}")
 #    Then convert your dictionary back into a list. Print the length of the list. https://www.w3schools.com/python/python_howto_remove_duplicates.asp
 # Dictionary comprehension: {expression(s):s for s in list} or {s: expression(s)for s in list}  ----- key:value
 
-#allTweetsContent_dict = {index(s)+1:s for s in content_list} #Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
+#Conversion of a list to dictionary will eliminate duplicates because a dictionary's entries are unique.
+#allTweetsContent_dict = {index(s)+1:s for s in content_list} 
 #allTweetsContent = list(content_list_dict.values()) #Extraction of a list of values from the dictionary
 allTweetsContent_dict = {allTweetsContent.index(s)+1: s for s in allTweetsContent}
 allTweetsContent = []
@@ -54,8 +55,10 @@ print(f"Length of the tweet list with duplicates removed: {len(allTweetsContent)
 
 
 
-# -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma. See Lecture 3 slides for more explanation of this!
-# -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. Create a loop to run through each entry in your list. 
+# -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma.
+#                      See Lecture 3 slides for more explanation of this!
+# -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. 
+#    Create a loop to run through each entry in your list. 
 #    Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
 pronouns = ["you", "she", "her", "he", "him", "we", "us", "they", "them", "those"]
 
