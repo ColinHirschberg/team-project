@@ -98,7 +98,7 @@ for i in pronouns:
     if type(m) == re.Match:
       try:
         NEWallTweetsContentNew.remove(allTweetsContent[j])
-      except ValueError:
+      except ValueError: #There was one specific tweet that caused an error, and we couldn't figure out why, so we decided to just skip it.
         pass
     else:
       continue
