@@ -64,7 +64,7 @@ print(f"Length of the tweet list with duplicates removed: {len(allTweetsContent)
 # -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma. See Lecture 3 slides for more explanation of this!
 # -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. Create a loop to run through each entry in your list. Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
 
-pronouns = ["you", "she", "her", "he", "him", "it", "we", "us", "they", "them", "those"]
+pronouns = ["you", "she", "her", "he", "him", "it", "we", "us", "they", "them"]
 
 #Seek out a PRO who sequence in which the last whitespace character is anything other than a letter or a comma, and apply remove() list method
 
