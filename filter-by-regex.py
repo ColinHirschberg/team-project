@@ -53,6 +53,11 @@ allTweetsContent = []
 allTweetsContent = list(allTweetsContent_dict.values())
 print(f"Length of the tweet list with duplicates removed: {len(allTweetsContent)}")
 
+with open('first_filter.csv', 'w') as f: 
+    write = csv.writer(f) 
+    for line in allTweetsContent:
+      write.writerow(["Remove duplicates.",line]) 
+
 
 
 # -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma.
@@ -82,9 +87,12 @@ for j in range(len(allTweetsContent)):
       allTweetsContentNew_1.append(allTweetsContent[j]) 
    
 allTweetsContent = allTweetsContentNew_1      
-# Replace allTweetsContent with allTweetsContentNew
-allTweetsContent = allTweetsContentNew
 print(f"Length of the list of tweets after second filter: {len(allTweetsContent)}")
+
+with open('second_filter.csv', 'w') as f: 
+    write = csv.writer(f) 
+    for line in allTweetsContent:
+      write.writerow(["Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma.",line]) 
 
 
 # -- Third filter: -- Remove the pattern 'of PRO who'
@@ -105,6 +113,11 @@ for i in pronouns:
 allTweetsContent = NEWallTweetsContentNew
 print(f"Length of the list of tweets after third filter: {len(allTweetsContent)}")
 
+with open('third_filter.csv', 'w') as f: 
+    write = csv.writer(f) 
+    for line in allTweetsContent:
+      write.writerow(["Remove the pattern \'of PRO who\'",line])
+
 
 
 # -- Fourth filter: -- Remove tweets where the pronoun 'it' preceeds the word 'who' by 2-4 words
@@ -118,6 +131,11 @@ for t in allTweetsContent:
         forth_filtered += [t]
 #print(forth_filtered)
 print(f"Length of the list of tweets after fourth filter: {len(forth_filtered)}")
+
+with open('fourth_filter.csv', 'w') as f: 
+    write = csv.writer(f) 
+    for line in allTweetsContent:
+      write.writerow(["Remove tweets where the pronoun \'it\' preceeds the word \'who\' by 2-4 words",line])
 
 
 
@@ -145,6 +163,11 @@ fifth_filtered = list(dict2.keys())
 
 #print(fifth_filtered)
 print(f"Length of the list of tweets after fifth filter: {len(fifth_filtered)}")
+
+with open('fifth_filter.csv', 'w') as f: 
+    write = csv.writer(f) 
+    for line in allTweetsContent:
+      write.writerow(["Remove tweets where 'PRO who' is preceded by the verbs 'ask', 'tell', 'wonder', 'inform', and 'show'",line])
 
 # output your list as a .csv or .tsv file.
 
