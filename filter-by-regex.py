@@ -139,11 +139,13 @@ fifth_filtered = list(dict2.keys())
 
 #print(fifth_filtered)
 print(f"Length of the list of tweets after fifth filter: {len(fifth_filtered)}")
+allTweetsContent = fifth_filtered
 
 # output your list as a .csv or .tsv file.
 with open('sllTweetsContent.csv', 'w', newline='') as allTweets_file:
     writer = csv.writer(allTweets_file)
-    writer.writerow(allTweetsContent)
+    for line in allTweetsContent:
+      writer.writerow([line])
 
 # === Part 2: Uniqueness ===
 
