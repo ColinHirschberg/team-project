@@ -59,6 +59,19 @@ print(f"Length of the tweet list with duplicates removed: {len(allTweetsContent)
 #    Create a loop to run through each entry in your list. 
 #    Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
 
+
+
+import copy
+import re
+
+#Second Filter Adjusted
+
+# -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma. See Lecture 3 slides for more explanation of this!
+# -- Suggested approach:# -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. 
+#    Create a loop to run through each entry in your list. Use a conditional statement to construct a regular expression match, and save the list elements matching your condition. Print the length of the list.
+
+
+
 #I saved all the tweets that match the pattern comprised of a pronoun; a succession of whitespaces; and the complementizer who.
 
 pronouns = ["you", "she", "her", "he", "him", "it", "we", "us", "they", "them","You", "She", "Her", "He", "Him", "It", "We", "Us", "They", "Them"]
@@ -80,8 +93,10 @@ for j in range(len(allTweetsContent)):
       match = True
     if k==19 and match: #A match has been detected earlier or now. (Note: both if statements can apply in such case that a match is sensed at k=19)
       allTweetsContentNew_1.append(allTweetsContent[j]) #Lists are mutable unlike strings and tuples.
+      
+allTweetsContent = allTweetsContentNew_1
 
-# print(len(allTweetsContent))
+print(len(allTweetsContent))
 
 print(f"Length of the list of tweets after second filter: {len(allTweetsContent)}")
 
