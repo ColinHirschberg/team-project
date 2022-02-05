@@ -144,32 +144,30 @@ print(f"Length of the list of tweets after fifth filter: {len(fifth_filtered)}")
 with open('sllTweetsContent.csv', 'w', newline='') as allTweets_file:
     writer = csv.writer(allTweets_file)
     writer.writerow(allTweetsContent)
+
 # === Part 2: Uniqueness ===
 
 # -- Instruction: -- You now need to find out whether the tweets you have left are "literary" or "non-literary", according to CTK's classification. 
 # I've written a bit of this for you. Modify the block of code below so that it runs with your variable names. 
 # You should replace 'tweetList' in the 'for' block with your variable name that holds the final filtered list of 'PRO who' tweets.
 
-# Test variable: contains a short list of test utterances for the pattern "who <word1> <word2>"
-tweetList = ['this is a quote: he who shall not be named', 'who among us really', 'jeff is wondering who sings', 
-            'he who shall not be named again', 'but who among us is perfect']
-
 # This evaluates each tweet in TweetList for whether it contains the specified regex search
 # and whether that regex pattern in a tweet matches exactly to any other tweet in the list. 
 # If it does, it is assigned a value True. If it doesn't, it's assigned a value False.
 trueFalseList = []
-for tweet in tweetList:
+for tweet in allTweetsContent:
   whoPhrase = re.search("who \w+ \w+", tweet)
   if whoPhrase is None:
-      trueFalseList.append(False)
+      trueFalseList.append("Non-literary")
   else:
-      trueFalseList.append(any(whoPhrase.group(0) in t for t in tweetList))
-print(trueFalseList)
+      result = any(whoPhrase.group(0) in t for t in allTweetsContent)
+      finalResult = "Literary" if result == True else "Non-literary"
+      trueFalseList.append(finalResult)
 
 # The following takes our two lists, tweetList and trueFalseList, and zips them together. 
 # It then creates a dataframe out of this list, that can then be converted to a .csv file
 
-annotatedTweetList = list(zip(tweetList, trueFalseList))
+annotatedTweetList = list(zip(allTweetsContent, trueFalseList))
 tweetDataframe = pandas.DataFrame(annotatedTweetList)
-tweetDataframe.to_csv('literary-annotated-tweets.csv', header=["Tweets", "isLiterary"], index=False)
+tweetDataframe.to_csv('literary-annotated-tweets.csv', header=["Tweet-text", "Uniqueness"], index=False)
 
