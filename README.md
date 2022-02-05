@@ -7,6 +7,8 @@
 - **filter-by-regex.py**: A .py file containing descriptions of the patterns that students should use to filter out irrelevant examples from **pro-who-tweets.csv**
 - **literary-annotated-tweets.csv**: A csv file that document all of the text and its uniqueness classification (literary or non-literary)
 - **sllTweetsContent.csv**: An exported csv of all the remaining tweets after undergoing 5 different stages of filtering
+- **sample-tweet-annotation.csv**: 150 annotated sample tweets taken from **pro-who-tweets.csv**
+- **report.pdf**: PDF report of the experiement result
 ### Overview of data in _pro-who-tweets.csv_
 
 The following table (made with help of [a markdown table generator](https://www.tablesgenerator.com/markdown_tables)), outlines the count of each search type that was pulled from tweets with that pattern posted on 22 September 2021. The maximum number of tweets collected for each pattern was 1,000, meaning that numbers less than 1,000 represent all the tweets from that day corresponding to that pattern.
