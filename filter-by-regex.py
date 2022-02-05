@@ -129,7 +129,7 @@ pronoun_list = ['me', 'you', 'him', 'her', 'it'] #仮に
 fifth_filtered = []
 
 for t in forth_filtered:
-    if re.search(r'\s(ask|tell|wonder|inform|show)\s(me|you|him|her|it|us|them)\swho\s' , t) != None:
+    if re.search(r'\s(ask|asked|asking|tell|told|telling|wonder|wondered|wondering|inform|informed|informing|show|showed|shown)\W{0,1}\s(me|you|him|her|it|us|them)\swho\s' , t) != None:
         continue
     else:
         fifth_filtered += [t]
