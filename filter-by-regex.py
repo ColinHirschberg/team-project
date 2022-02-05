@@ -53,13 +53,6 @@ allTweetsContent = []
 allTweetsContent = list(allTweetsContent_dict.values())
 print(f"Length of the tweet list with duplicates removed: {len(allTweetsContent)}")
 
-with open('first_filter.csv', 'w') as f: 
-    write = csv.writer(f) 
-    for line in allTweetsContent:
-      write.writerow(["Remove duplicates.",line]) 
-
-
-
 # -- Second filter: -- Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma.
 #                      See Lecture 3 slides for more explanation of this!
 # -- Suggested approach: -- Use the list you created as a result of the previous filter. Save the 10 possible pronouns in a list. 
@@ -89,12 +82,6 @@ for j in range(len(allTweetsContent)):
 allTweetsContent = allTweetsContentNew_1      
 print(f"Length of the list of tweets after second filter: {len(allTweetsContent)}")
 
-with open('second_filter.csv', 'w') as f: 
-    write = csv.writer(f) 
-    for line in allTweetsContent:
-      write.writerow(["Remove tweets where the last non-whitespace character before the word 'who' is not a letter or a comma.",line]) 
-
-
 # -- Third filter: -- Remove the pattern 'of PRO who'
 # -- Suggested approach: -- Create another loop, and another conditional statement using a regular expression from the list you got from the previous filter. 
 #    This time, save only those that DO NOT match the conditional statement. Print the length of the list.
@@ -113,13 +100,6 @@ for i in pronouns:
 allTweetsContent = NEWallTweetsContentNew
 print(f"Length of the list of tweets after third filter: {len(allTweetsContent)}")
 
-with open('third_filter.csv', 'w') as f: 
-    write = csv.writer(f) 
-    for line in allTweetsContent:
-      write.writerow(["Remove the pattern \'of PRO who\'",line])
-
-
-
 # -- Fourth filter: -- Remove tweets where the pronoun 'it' preceeds the word 'who' by 2-4 words
 # -- Suggested approach: -- Write a regular expression that picks out this pattern. Using the list you generated from the previous filter
 #    use create a loop with a conditional statement that removes this pattern. Print the length of the list.
@@ -131,13 +111,6 @@ for t in allTweetsContent:
         forth_filtered += [t]
 #print(forth_filtered)
 print(f"Length of the list of tweets after fourth filter: {len(forth_filtered)}")
-
-with open('fourth_filter.csv', 'w') as f: 
-    write = csv.writer(f) 
-    for line in allTweetsContent:
-      write.writerow(["Remove tweets where the pronoun \'it\' preceeds the word \'who\' by 2-4 words",line])
-
-
 
 # -- Fifth filter: -- Remove tweets where 'PRO who' is preceded by the verbs 'ask', 'tell', 'wonder', 'inform', and 'show'.
 # -- Suggested approach: --  Save the verbs above into a list. Create a loop that iterates through your pronoun list from above
@@ -163,11 +136,6 @@ fifth_filtered = list(dict2.keys())
 
 #print(fifth_filtered)
 print(f"Length of the list of tweets after fifth filter: {len(fifth_filtered)}")
-
-with open('fifth_filter.csv', 'w') as f: 
-    write = csv.writer(f) 
-    for line in allTweetsContent:
-      write.writerow(["Remove tweets where 'PRO who' is preceded by the verbs 'ask', 'tell', 'wonder', 'inform', and 'show'",line])
 
 # output your list as a .csv or .tsv file.
 with open('sllTweetsContent.csv', 'w', newline='') as allTweets_file:
