@@ -139,7 +139,7 @@ pronoun_list = ['me', 'you', 'him', 'her', 'it'] #仮に
 fifth_filtered = []
 
 for t in forth_filtered:
-    if re.search(r'\s(ask|tell|wonder|inform|show)\s(me|you|him|her|it|us|them)\swho\s' , t) != None:
+    if re.search(r'\s(ask|asked|asking|tell|told|telling|wonder|wondered|wondering|inform|informed|informing|show|showed|shown)\W{0,1}\s(me|you|him|her|it|us|them)\swho\s' , t) != None:
         continue
     else:
         fifth_filtered += [t]
@@ -157,9 +157,9 @@ fifth_filtered = list(dict2.keys())
 print(f"Length of the list of tweets after fifth filter: {len(fifth_filtered)}")
 
 # output your list as a .csv or .tsv file.
-
-
-
+with open('sllTweetsContent.csv', 'w', newline='') as allTweets_file:
+    writer = csv.writer(allTweets_file)
+    writer.writerow(allTweetsContent)
 # === Part 2: Uniqueness ===
 
 # -- Instruction: -- You now need to find out whether the tweets you have left are "literary" or "non-literary", according to CTK's classification. 
