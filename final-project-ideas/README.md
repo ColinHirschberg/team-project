@@ -1,1 +1,1 @@
-Enclosed in this folder, you will find the final project ideas. So far our only project proposal is Mandarin code switching. We will require one more project proposal. 
+Enclosed in this folder, you will find the final project ideas. So far, we have resolved to investigate Mandarin-English code-switching as one topic in addition to overregularization of English language rules and of Japanese language rules by Japanese children.
